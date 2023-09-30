@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbwowjrmyg668"]
+
+[ext_resource type="PackedScene" uid="uid://dnc46t18jthjl" path="res://ground.tscn" id="1_c83ny"]
+[ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
+
+[node name="world" type="Node"]
+
+[node name="ground" parent="." instance=ExtResource("1_c83ny")]
+
+[node name="player" parent="." instance=ExtResource("2_8g7m2")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.298445, 0.641039, 0, 0.906566, 0.422065, -0.707107, -0.298445, 0.641039, 6, 4, 6)
+fov = 82.2821
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.94329, 0)
+omni_range = 22.6851
