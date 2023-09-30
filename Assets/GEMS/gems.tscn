@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkgt3l35cvv2t"]
+
+[ext_resource type="PackedScene" uid="uid://ym1v0x82r3ie" path="res://Assets/GEMS/gems_abcd.glb" id="1_v6s3c"]
+[ext_resource type="Material" uid="uid://dj2gmbfkpxvyg" path="res://Assets/GEMS/gem.material" id="2_kuqgw"]
+
+[node name="gems" instance=ExtResource("1_v6s3c")]
+
+[node name="gem_a" parent="." index="0"]
+material_override = ExtResource("2_kuqgw")
+
+[node name="gem_b" parent="." index="1"]
+material_override = ExtResource("2_kuqgw")
+
+[node name="gem_c" parent="." index="2"]
+material_override = ExtResource("2_kuqgw")
+
+[node name="gem_d" parent="." index="3"]
+material_override = ExtResource("2_kuqgw")
