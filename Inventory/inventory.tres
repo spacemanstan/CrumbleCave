@@ -5,4 +5,4 @@
 
 [resource]
 script = ExtResource("1_vf0k7")
-item_datas = Array[Resource("res://Resources/ItemData.gd")]([ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6")])
+item_datas = Array[Resource("res://Resources/ItemData.gd")]([ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6")])
