@@ -5,11 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
 [ext_resource type="PackedScene" uid="uid://bycy02mh3ki2n" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
 [ext_resource type="Script" path="res://Lava.gd" id="4_24ce5"]
+[ext_resource type="PackedScene" uid="uid://btcv1ide7hov8" path="res://Inventory/inventory.tscn" id="5_kqvlx"]
 [ext_resource type="MeshLibrary" uid="uid://d0hmgjrrpyjeh" path="res://Assets/LavaTiles/lava_tiles.tres" id="5_nroe0"]
 [ext_resource type="Script" path="res://GameSplash.gd" id="6_xghbb"]
 
 [node name="world" type="Node"]
 script = ExtResource("1_ccbp5")
+
+[node name="InventoryBar" parent="." instance=ExtResource("5_kqvlx")]
 
 [node name="player" parent="." node_paths=PackedStringArray("Lava") instance=ExtResource("2_8g7m2")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 5, 0)
@@ -26,8 +29,6 @@ omni_range = 22.6851
 [node name="Ground" parent="." instance=ExtResource("1_c83ny")]
 stone_F = ExtResource("4_2tblx")
 Frequency = 0.1
-
-[node name="InventoryBar" parent="." instance=ExtResource("5_kqvlx")]
 
 [node name="Lava" type="Node3D" parent="."]
 script = ExtResource("4_24ce5")
