@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://hx8hbbrw2jmq"]
 
 [ext_resource type="Script" path="res://ground-spawner.gd" id="1_04fci"]
-[ext_resource type="PackedScene" uid="uid://crox8wywaanqr" path="res://ground-tile.tscn" id="2_au0yc"]
+[ext_resource type="PackedScene" uid="uid://mkj65i1lcxkv" path="res://Assets/Stones/stone_d.tscn" id="2_yygax"]
 
 [node name="Node" type="Node3D"]
 script = ExtResource("1_04fci")
-tile = ExtResource("2_au0yc")
+tile = ExtResource("2_yygax")

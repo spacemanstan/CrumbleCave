@@ -39,9 +39,10 @@ func generateTileMap(SpawnPos):
 			var y = -0.01
 			if(Vector2(x,z) == SpawnPos || randf() <= MissingChance):
 				y = getGroundHeight(x, z)
-				
+			y -= 1
 			var nt = tile.instantiate()
 			nt.position = Vector3(x,y,z)
+			nt.rotate_y(randi_range(0,3) * PI/2)
 			add_child(nt)
 			#nt.set_owner(get_tree().edited_scene_root)
 
