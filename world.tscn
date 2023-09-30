@@ -1,18 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbwowjrmyg668"]
+[gd_scene load_steps=7 format=3 uid="uid://dbwowjrmyg668"]
 
-[ext_resource type="PackedScene" uid="uid://dnc46t18jthjl" path="res://ground.tscn" id="1_c83ny"]
-[ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
+[ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
+[ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="2_8g7m2"]
+[ext_resource type="Script" path="res://Lava.gd" id="4_24ce5"]
+
+[sub_resource type="Gradient" id="Gradient_i8nsv"]
+colors = PackedColorArray(0.870387, 1.44392e-06, 1.2514e-06, 1, 0.585847, 1.44392e-06, 2.88785e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ii0j0"]
+gradient = SubResource("Gradient_i8nsv")
+fill_to = Vector2(0.784404, 0.747706)
 
 [node name="world" type="Node"]
-
-[node name="ground" parent="." instance=ExtResource("1_c83ny")]
+script = ExtResource("1_ccbp5")
 
 [node name="player" parent="." instance=ExtResource("2_8g7m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.298445, 0.641039, 0, 0.906566, 0.422065, -0.707107, -0.298445, 0.641039, 6, 4, 6)
 fov = 82.2821
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.94329, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 omni_range = 22.6851
+
+[node name="Ground" parent="." instance=ExtResource("1_c83ny")]
+
+[node name="Lava" type="Sprite3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
+axis = 1
+texture = SubResource("GradientTexture2D_ii0j0")
+script = ExtResource("4_24ce5")
+riseRate = 0.0
+
+[node name="LavaLight" type="DirectionalLight3D" parent="."]
+light_color = Color(0.745098, 0, 0.0156863, 1)
+light_energy = 0.1
+light_bake_mode = 0
+sky_mode = 1

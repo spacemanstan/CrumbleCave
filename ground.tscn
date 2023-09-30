@@ -1,16 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnc46t18jthjl"]
+[gd_scene load_steps=3 format=3 uid="uid://hx8hbbrw2jmq"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xp01e"]
-size = Vector3(10, 1, 10)
+[ext_resource type="Script" path="res://ground-spawner.gd" id="1_04fci"]
+[ext_resource type="PackedScene" uid="uid://crox8wywaanqr" path="res://ground-tile.tscn" id="2_au0yc"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_6b0fv"]
-size = Vector2(10, 10)
-
-[node name="ground" type="StaticBody3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_xp01e")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_6b0fv")
+[node name="Node" type="Node3D"]
+script = ExtResource("1_04fci")
+tile = ExtResource("2_au0yc")
