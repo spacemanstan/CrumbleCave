@@ -1,8 +1,12 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const ROTATION_SPEED = 2  # Adjust this value to control the rotation speed
+signal PlayerDied
+
+@export var Lava : Node3D
+
+@export var SPEED = 5.0
+@export var JUMP_VELOCITY = 4.5
+@export var ROTATION_SPEED = 2  # Adjust this value to control the rotation speed
 
 var camera: Camera3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -16,7 +20,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump using custom "jump" action.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction.
@@ -40,5 +44,19 @@ func _physics_process(delta):
 
 	if rotation_amount != 0:
 		rotate_y(rotation_amount * delta)
-
 	move_and_slide()
+	
+	if(position.y <= Lava.position.y):
+		killPlayer()
+
+func killPlayer():
+	print("THE PLAYER IS DEAD")	
+	respawnPlayer()
+	PlayerDied.emit()
+	
+func respawnPlayer():
+	# return the player to the starting spot
+	position = Vector3(0,5,0)
+	
+func _on_world_game_start():
+	respawnPlayer()
