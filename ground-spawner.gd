@@ -1,6 +1,9 @@
 extends Node3D
 
-@export var tile: PackedScene
+
+@export var stone_D : PackedScene
+@export var stone_E : PackedScene
+@export var stone_F : PackedScene
 @export var MapSize : Vector2 = Vector2(32,32)
 @export_range(0,1) var MissingChance : float = 0.8
 @export_group("Map Gen")
@@ -31,6 +34,7 @@ func clearTileMap():
 
 # Makes sure that There is a tile at Spawn Pos
 func generateTileMap(SpawnPos):
+	var tiles = [stone_D, stone_E, stone_F]
 	if(MapSeedIsRandom):
 		noise.seed = randi()
 		
@@ -39,9 +43,10 @@ func generateTileMap(SpawnPos):
 			var y = -0.01
 			if(Vector2(x,z) == SpawnPos || randf() <= MissingChance):
 				y = getGroundHeight(x, z)
-				
-			var nt = tile.instantiate()
+			y -= 1
+			var nt = tiles[randi_range(0,2)].instantiate()
 			nt.position = Vector3(x,y,z)
+			nt.rotate_y(randi_range(0,3) * PI/2)
 			add_child(nt)
 			#nt.set_owner(get_tree().edited_scene_root)
 

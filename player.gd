@@ -4,9 +4,9 @@ signal PlayerDied
 
 @export var Lava : Node3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const ROTATION_SPEED = 2  # Adjust this value to control the rotation speed
+@export var SPEED = 5.0
+@export var JUMP_VELOCITY = 4.5
+@export var ROTATION_SPEED = 2  # Adjust this value to control the rotation speed
 
 var camera: Camera3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -20,7 +20,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle Jump using custom "jump" action.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction.
