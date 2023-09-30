@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=3 format=3 uid="uid://wqq51inbrimt"]
+
+[ext_resource type="Resource" uid="uid://dv071e13xwv5x" path="res://Resources/water.tres" id="1_bw0s6"]
+[ext_resource type="Script" path="res://Resources/InventoryData.gd" id="1_vf0k7"]
+
+[resource]
+script = ExtResource("1_vf0k7")
+item_datas = Array[Resource("res://Resources/ItemData.gd")]([ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6"), ExtResource("1_bw0s6")])
