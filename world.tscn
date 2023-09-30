@@ -25,6 +25,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 omni_range = 22.6851
 
 [node name="Ground" parent="." instance=ExtResource("1_c83ny")]
+MapSize = Vector2(32, 32)
+MissingChance = 0.8
+MapSeedIsRandom = true
+DefaultSeedValue = 0
+Noise_Type = 1
+Octaves = 4
+Lacunarity = 2.0
 Frequency = 0.1
 
 [node name="inventory" type="Node2D" parent="."]
