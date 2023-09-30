@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://3qbe4f75i4si"]
+
+[ext_resource type="Script" path="res://Resources/ItemData.gd" id="1_yy711"]
+[ext_resource type="Texture2D" uid="uid://c58io5c4724q4" path="res://Assets/card_blank.png" id="2_3v0qm"]
+
+[resource]
+script = ExtResource("1_yy711")
+name = "Red Gem"
+description = "A shiny red gem"
+texture = ExtResource("2_3v0qm")
