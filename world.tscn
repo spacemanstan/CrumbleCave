@@ -18,8 +18,8 @@ script = ExtResource("1_ccbp5")
 [node name="player" parent="." instance=ExtResource("2_8g7m2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.298445, 0.641039, 0, 0.906566, 0.422065, -0.707107, -0.298445, 0.641039, 6, 4, 6)
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(0.707107, -0.298445, 0.641039, 0, 0.906566, 0.422065, -0.707107, -0.298445, 0.641039, 6, 6.70297, 6)
 fov = 82.2821
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -33,7 +33,7 @@ transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
 axis = 1
 texture = SubResource("GradientTexture2D_ii0j0")
 script = ExtResource("4_24ce5")
-riseRate = 0.0
+riseRate = 0.01
 
 [node name="LavaLight" type="DirectionalLight3D" parent="."]
 light_color = Color(0.745098, 0, 0.0156863, 1)
