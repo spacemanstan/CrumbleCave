@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbwowjrmyg668"]
+[gd_scene load_steps=8 format=3 uid="uid://dbwowjrmyg668"]
 
 [ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
 [ext_resource type="Script" path="res://Lava.gd" id="4_24ce5"]
 [ext_resource type="MeshLibrary" uid="uid://d0hmgjrrpyjeh" path="res://Assets/LavaTiles/lava_tiles.tres" id="5_nroe0"]
+[ext_resource type="Script" path="res://GameSplash.gd" id="6_xghbb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_52mma"]
 
@@ -24,6 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 omni_range = 22.6851
 
 [node name="Ground" parent="." instance=ExtResource("1_c83ny")]
+Frequency = 0.1
 
 [node name="inventory" type="Node2D" parent="."]
 position = Vector2(1111, 2157)
@@ -40,7 +42,6 @@ offset_right = -0.0640259
 offset_bottom = -0.248047
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
 
 [node name="slot1" type="Panel" parent="inventory/HBoxContainer"]
 material = SubResource("CanvasItemMaterial_52mma")
@@ -124,3 +125,64 @@ light_color = Color(0.745098, 0, 0.0156863, 1)
 light_energy = 0.1
 light_bake_mode = 0
 sky_mode = 1
+
+[node name="GameSpash" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_xghbb")
+
+[node name="Grayout" type="ColorRect" parent="GameSpash"]
+layout_mode = 0
+offset_left = -25000.0
+offset_top = -25000.0
+offset_right = 25000.0
+offset_bottom = 25000.0
+color = Color(0.364706, 0.364706, 0.364706, 0.407843)
+
+[node name="Title" type="Label" parent="GameSpash"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.5
+offset_right = 66.5
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "CRUMBLE CAVE!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartGame" type="Button" parent="GameSpash"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.0
+offset_top = -31.0
+offset_right = 53.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "START GAEM"
+
+[connection signal="Game_Over" from="." to="." method="_on_game_over"]
+[connection signal="Game_Over" from="." to="Lava" method="_on_world_game_over"]
+[connection signal="Game_Over" from="." to="GameSpash" method="_on_world_game_over"]
+[connection signal="Game_Start" from="." to="." method="_on_game_start"]
+[connection signal="Game_Start" from="." to="player" method="_on_world_game_start"]
+[connection signal="Game_Start" from="." to="Ground" method="_on_world_game_start"]
+[connection signal="Game_Start" from="." to="Lava" method="_on_world_game_start"]
+[connection signal="PlayerDied" from="player" to="." method="_on_player_player_died"]
+[connection signal="pressed" from="GameSpash/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="GameSpash/StartGame" to="GameSpash" method="_on_start_game_pressed"]

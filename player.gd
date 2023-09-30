@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal PlayerDied
+
 @export var Lava : Node3D
 
 const SPEED = 5.0
@@ -45,8 +47,16 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if(position.y <= Lava.position.y):
-		Kill_Player(null)
+		killPlayer()
 
-func Kill_Player(event):
+func killPlayer():
 	print("THE PLAYER IS DEAD")	
-	Lava.position.y = 0
+	respawnPlayer()
+	PlayerDied.emit()
+	
+func respawnPlayer():
+	# return the player to the starting spot
+	position = Vector3(0,5,0)
+	
+func _on_world_game_start():
+	respawnPlayer()
