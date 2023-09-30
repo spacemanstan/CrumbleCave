@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ground-spawner.gd" id="1_04fci"]
 [ext_resource type="PackedScene" uid="uid://mkj65i1lcxkv" path="res://Assets/Stones/stone_d.tscn" id="2_eb87u"]
-[ext_resource type="PackedScene" uid="uid://b1jkbx3sed1a7" path="res://Assets/Stones/stone_e.tscn" id="3_puwy8"]
+[ext_resource type="PackedScene" path="res://Assets/Stones/stone_e.tscn" id="3_puwy8"]
 
 [node name="Node" type="Node3D"]
 script = ExtResource("1_04fci")

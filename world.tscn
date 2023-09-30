@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbwowjrmyg668"]
+[gd_scene load_steps=9 format=3 uid="uid://dbwowjrmyg668"]
 
 [ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
+[ext_resource type="PackedScene" uid="uid://bycy02mh3ki2n" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
 [ext_resource type="Script" path="res://Lava.gd" id="4_24ce5"]
 [ext_resource type="MeshLibrary" uid="uid://d0hmgjrrpyjeh" path="res://Assets/LavaTiles/lava_tiles.tres" id="5_nroe0"]
 [ext_resource type="Script" path="res://GameSplash.gd" id="6_xghbb"]
@@ -25,13 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 omni_range = 22.6851
 
 [node name="Ground" parent="." instance=ExtResource("1_c83ny")]
-MapSize = Vector2(32, 32)
-MissingChance = 0.8
-MapSeedIsRandom = true
-DefaultSeedValue = 0
-Noise_Type = 1
-Octaves = 4
-Lacunarity = 2.0
+stone_F = ExtResource("4_2tblx")
 Frequency = 0.1
 
 [node name="inventory" type="Node2D" parent="."]
