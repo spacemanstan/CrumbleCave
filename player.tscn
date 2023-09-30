@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://quh0pnhlex2d"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ljlmo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_imm1t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afycw"]
+albedo_color = Color(0.301961, 1, 0.239216, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_utn2p"]
+material = SubResource("StandardMaterial3D_afycw")
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_ljlmo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_imm1t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_utn2p")
