@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dbwowjrmyg668"]
 
-[ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
+[ext_resource type="PackedScene" uid="uid://dnc46t18jthjl" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
 [ext_resource type="Script" path="res://Lava.gd" id="4_24ce5"]
@@ -21,7 +21,7 @@ script = ExtResource("1_ccbp5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 6.703, 6)
+transform = Transform3D(0.707107, -0.298445, 0.641039, 0, 0.906566, 0.422065, -0.707107, -0.298445, 0.641039, 6, 6.70297, 6)
 fov = 82.2821
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -58,7 +58,6 @@ offset_right = -0.0640259
 offset_bottom = -0.248047
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
 
 [node name="slot1" type="Panel" parent="inventory/HBoxContainer"]
 material = SubResource("CanvasItemMaterial_52mma")
