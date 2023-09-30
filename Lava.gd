@@ -1,4 +1,4 @@
-extends Sprite3D
+extends Node3D
 
 @export var riseRate : float = 0.1
 

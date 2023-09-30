@@ -1,5 +1,7 @@
 extends Node
 
+signal Game_Start
+signal Game_Over
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,5 +10,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print("FPS: ", Engine.get_frames_per_second())
+	#print("FPS: ", Engine.get_frames_per_second())
 	pass

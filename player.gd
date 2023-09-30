@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var Lava : Node3D
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const ROTATION_SPEED = 2  # Adjust this value to control the rotation speed
@@ -40,5 +42,11 @@ func _physics_process(delta):
 
 	if rotation_amount != 0:
 		rotate_y(rotation_amount * delta)
-
 	move_and_slide()
+	
+	if(position.y <= Lava.position.y):
+		Kill_Player(null)
+
+func Kill_Player(event):
+	print("THE PLAYER IS DEAD")	
+	Lava.position.y = 0
