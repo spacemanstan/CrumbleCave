@@ -126,4 +126,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0892687, 1.25878, -2.45166)
 [connection signal="PlayerDied" from="player" to="." method="_on_player_player_died"]
 [connection signal="pressed" from="GameSpash/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="GameSpash/StartGame" to="GameSpash" method="_on_start_game_pressed"]
-[connection signal="area_entered" from="gems" to="InventoryBar" method="_on_gems_red_gem_collected"]

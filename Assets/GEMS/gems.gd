@@ -1,7 +1,5 @@
 extends Node3D
 
-signal red_gem_collected
-
 func _ready():
 	#default to gem a on spawn
 	chooseGem("a")
@@ -27,6 +25,3 @@ func chooseGem(choice):
 		"d":
 			name = "Gem D"
 			$gem_d.show()
-
-func _on_area_3d_body_entered(body):
-	red_gem_collected.emit()

@@ -63,5 +63,5 @@ func _on_world_game_start():
 	respawnPlayer()
 
 
-func _on_area_3d_body_entered(body):
-	CollidedWithGem.emit(body)
+func _on_gem_sniffer_area_entered(area):
+	CollidedWithGem.emit(area)
