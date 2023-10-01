@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbwowjrmyg668"]
+[gd_scene load_steps=14 format=3 uid="uid://dbwowjrmyg668"]
 
 [ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
-[ext_resource type="PackedScene" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
+[ext_resource type="PackedScene" uid="uid://bycy02mh3ki2n" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
 [ext_resource type="PackedScene" uid="uid://btcv1ide7hov8" path="res://Inventory/inventory.tscn" id="5_kqvlx"]
 [ext_resource type="Script" path="res://Assets/LavaTiles/Lava.gd" id="6_3174l"]
+[ext_resource type="PackedScene" uid="uid://bg203a1oynmpj" path="res://Assets/LavaTiles/lavagrid.tscn" id="8_tupp6"]
 [ext_resource type="PackedScene" uid="uid://bkgt3l35cvv2t" path="res://Assets/GEMS/gems.tscn" id="9_c0vol"]
 [ext_resource type="Script" path="res://score/Score.gd" id="9_i7pub"]
 
@@ -69,6 +70,8 @@ light_color = Color(0.745098, 0, 0.0156863, 1)
 light_energy = 0.1
 light_bake_mode = 0
 sky_mode = 1
+
+[node name="Node3D" parent="Lava" instance=ExtResource("8_tupp6")]
 
 [node name="GameSpash" type="Control" parent="."]
 layout_mode = 3

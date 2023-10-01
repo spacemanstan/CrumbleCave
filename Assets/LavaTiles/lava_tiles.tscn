@@ -1,5 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5s885083ij7j"]
+[gd_scene load_steps=2 format=3 uid="uid://4kgngkqlu0dk"]
 
-[ext_resource type="PackedScene" uid="uid://cqgvfu38qhdlm" path="res://Assets/LavaTiles/LavaTiles.gltf" id="1_bqxg5"]
+[ext_resource type="PackedScene" uid="uid://cqgvfu38qhdlm" path="res://Assets/LavaTiles/LavaTiles.gltf" id="1_g8thr"]
 
-[node name="LavaTiles" instance=ExtResource("1_bqxg5")]
+[node name="LavaTiles" instance=ExtResource("1_g8thr")]
