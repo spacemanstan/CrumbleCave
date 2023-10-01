@@ -1,32 +1,43 @@
 extends Control
 
-var inventory: InventoryData
+var inventory: Array[ItemData]
 var hbox: HBoxContainer
 
 func _ready():
 	hbox = $CenterContainer/HBoxContainer
-	inventory = preload("res://Inventory/inventory.tres")
 	populate_inventory()
 
 func populate_inventory():
 	# Clear the existing items first
-	for child in hbox.get_children():
-		hbox.remove_child(child)
-		child.queue_free()
-	
-	for item_data in inventory.item_datas:
+	clear_inventory()
+	for item_data in inventory:
 		add_item_to_inventory(item_data)
 
 func add_item_to_inventory(item_data: ItemData):
+	inventory.append(item_data)  # Add to inventory list
 	var item_display = TextureRect.new()
 	item_display.texture = item_data.texture
 	hbox.add_child(item_display)
 
-func remove_item_from_inventory(item_data: ItemData):
+# clears the whole inventory
+func clear_inventory():
+	inventory.clear()
 	for child in hbox.get_children():
-		if child.texture == item_data.texture:
-			hbox.remove_child(child)
-			child.queue_free()
-			break  # remove this line if you want to remove all instances of the item
+		hbox.remove_child(child)
+		child.queue_free()
+	
+# on reciept of red_gem_collected create an ItemData and push into inventory array
+func _on_gems_red_gem_collected():
+	var item = ItemData.new()
+	item.name = "Red Gem"
+	var placeholder = PlaceholderTexture2D.new()
+	placeholder.set_size(Vector2(65,150))
+	item.texture = placeholder
+	add_item_to_inventory(item)
+	print("PLAYER COLLECTED GEM")
 
+func _on_world_game_over():
+	clear_inventory()
 
+func _on_world_game_start():
+	clear_inventory()
