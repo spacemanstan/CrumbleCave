@@ -1,10 +1,6 @@
 extends Node3D
 
-signal red_gem_collected
-
-func _ready():
-	#default to gem a on spawn
-	chooseGem("a")
+var gemName = "undefined"
 
 func _process(delta):
 	rotate_y(0.5 * delta)
@@ -16,17 +12,18 @@ func chooseGem(choice):
 	$gem_d.hide()
 	match choice:
 		"a":
-			name = "Gem A"
+			$OmniLight3D.omni_range = 2.
+			gemName = "Gem A"
 			$gem_a.show()
 		"b":
-			name = "Gem B"
+			$OmniLight3D.omni_range = 2.5
+			gemName = "Gem B"
 			$gem_b.show()
 		"c":
-			name = "Gem C"
+			$OmniLight3D.omni_range = 3.
+			gemName = "Gem C"
 			$gem_c.show()
 		"d":
-			name = "Gem D"
+			$OmniLight3D.omni_range = 4.
+			gemName = "Gem D"
 			$gem_d.show()
-
-func _on_area_3d_body_entered(body):
-	red_gem_collected.emit()

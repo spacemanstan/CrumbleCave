@@ -1,13 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://dbwowjrmyg668"]
+[gd_scene load_steps=13 format=3 uid="uid://dbwowjrmyg668"]
 
 [ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
-[ext_resource type="PackedScene" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
+[ext_resource type="PackedScene" uid="uid://bycy02mh3ki2n" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
 [ext_resource type="PackedScene" uid="uid://btcv1ide7hov8" path="res://Inventory/inventory.tscn" id="5_kqvlx"]
-[ext_resource type="MeshLibrary" uid="uid://d0hmgjrrpyjeh" path="res://Assets/LavaTiles/lava_tiles.tres" id="5_nroe0"]
 [ext_resource type="Script" path="res://Assets/LavaTiles/Lava.gd" id="6_3174l"]
 [ext_resource type="PackedScene" uid="uid://bkgt3l35cvv2t" path="res://Assets/GEMS/gems.tscn" id="9_c0vol"]
+[ext_resource type="Script" path="res://score/Score.gd" id="9_i7pub"]
+
+[sub_resource type="Environment" id="Environment_w5hft"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(0.388235, 0.180392, 0.113725, 1)
 
 [sub_resource type="GDScript" id="GDScript_ddrxh"]
 script/source = "extends Control
@@ -20,8 +25,17 @@ func _on_world_game_over():
 	show()
 "
 
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_gwj2k"]
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_udl2y"]
+events = [SubResource("InputEventJoypadButton_gwj2k")]
+
 [node name="world" type="Node"]
 script = ExtResource("1_ccbp5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w5hft")
 
 [node name="InventoryBar" parent="." instance=ExtResource("5_kqvlx")]
 
@@ -39,19 +53,15 @@ omni_range = 22.6851
 
 [node name="Ground" parent="." instance=ExtResource("1_c83ny")]
 stone_F = ExtResource("4_2tblx")
+MapSize = Vector2(70, 70)
 MapSeedIsRandom = false
 Frequency = 0.1
+Gem = ExtResource("9_c0vol")
+numberOfGems = 20
 
 [node name="Lava" type="Node3D" parent="."]
 script = ExtResource("6_3174l")
-
-[node name="GridMap" type="GridMap" parent="Lava"]
-mesh_library = ExtResource("5_nroe0")
-cell_size = Vector3(8, 4, 8)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(4, 65534, 1441792, 4, 65535, 1441792, 4, 1, 1441792, 4, 2, 1441792, 4, 0, 1441792, 65531, 65534, 1048576, 65531, 65535, 1048576, 65531, 0, 1048576, 65531, 1, 1048576, 65531, 2, 1048576, 65535, 65531, 0, 0, 65531, 0, 1, 65531, 0, 2, 65531, 0, 65534, 65531, 0, 65533, 65531, 0, 65532, 65531, 0, 3, 65531, 0, 2, 5, 655360, 3, 5, 655360, 1, 5, 655360, 0, 5, 655360, 65535, 5, 655360, 65534, 5, 655360, 65533, 5, 655360, 65532, 5, 655360, 65531, 3, 1048576, 65531, 4, 1048576, 4, 4, 1441792, 4, 3, 1441792, 4, 65533, 1441792, 4, 65532, 1441792, 65531, 65533, 1048576, 65531, 65532, 1048576, 65531, 5, 1048578, 65531, 65531, 2, 4, 65531, 1441794, 4, 5, 655362, 3, 65532, 655361, 2, 65532, 655361, 1, 65532, 655361, 0, 65532, 655361, 65535, 65532, 655361, 65534, 65532, 655361, 65533, 65532, 655361, 65532, 65532, 655361, 65532, 65533, 655361, 65532, 65534, 655361, 65533, 65534, 655361, 65534, 65534, 655361, 65535, 65534, 655361, 0, 65534, 655361, 1, 65534, 655361, 2, 65534, 655361, 3, 65534, 655361, 65533, 65533, 655361, 65534, 65533, 655361, 65535, 65533, 655361, 0, 65533, 655361, 1, 65533, 655361, 2, 65533, 655361, 3, 65533, 655361, 3, 65535, 655361, 3, 0, 655361, 3, 1, 655361, 3, 2, 655361, 3, 3, 655361, 3, 4, 655361, 2, 4, 655361, 1, 4, 655361, 0, 4, 655361, 65535, 4, 655361, 65534, 4, 655361, 65533, 4, 655361, 65532, 4, 655361, 65532, 3, 655361, 65532, 2, 655361, 65532, 1, 655361, 65532, 0, 655361, 65532, 65535, 655361, 65533, 3, 655361, 65533, 2, 655361, 65533, 1, 655361, 65533, 0, 655361, 65533, 65535, 655361, 65534, 3, 655361, 65534, 2, 655361, 65534, 1, 655361, 65534, 0, 655361, 65534, 65535, 655361, 65535, 2, 655361, 65535, 3, 655361, 65535, 1, 655361, 65535, 0, 655361, 65535, 65535, 655361, 0, 65535, 655361, 0, 0, 655361, 0, 1, 655361, 0, 2, 655361, 0, 3, 655361, 1, 2, 655361, 1, 1, 655361, 1, 0, 655361, 1, 3, 655361, 2, 2, 655361, 2, 1, 655361, 2, 0, 655361, 1, 65535, 655361, 2, 3, 655361, 2, 65535, 655361)
-}
+riseRate = 0.01
 
 [node name="LavaLight" type="DirectionalLight3D" parent="Lava"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -108,22 +118,28 @@ offset_top = -31.0
 offset_right = 53.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "START GAEM"
+shortcut = SubResource("Shortcut_udl2y")
+text = "START GAME"
 
-[node name="gems" parent="." instance=ExtResource("9_c0vol")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0892687, 1.25878, -2.45166)
+[node name="Score" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("9_i7pub")
 
 [connection signal="Game_Over" from="." to="." method="_on_game_over"]
 [connection signal="Game_Over" from="." to="InventoryBar" method="_on_world_game_over"]
 [connection signal="Game_Over" from="." to="Lava" method="_on_world_game_over"]
 [connection signal="Game_Over" from="." to="GameSpash" method="_on_world_game_over"]
+[connection signal="Game_Over" from="." to="Score" method="_on_world_game_over"]
 [connection signal="Game_Start" from="." to="." method="_on_game_start"]
 [connection signal="Game_Start" from="." to="InventoryBar" method="_on_world_game_start"]
 [connection signal="Game_Start" from="." to="player" method="_on_world_game_start"]
 [connection signal="Game_Start" from="." to="Ground" method="_on_world_game_start"]
 [connection signal="Game_Start" from="." to="Lava" method="_on_world_game_start"]
+[connection signal="Game_Start" from="." to="Score" method="_on_world_game_start"]
 [connection signal="CollidedWithGem" from="player" to="InventoryBar" method="_on_gems_red_gem_collected"]
+[connection signal="CollidedWithGem" from="player" to="Ground" method="_on_player_collided_with_gem"]
 [connection signal="PlayerDied" from="player" to="." method="_on_player_player_died"]
 [connection signal="pressed" from="GameSpash/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="GameSpash/StartGame" to="GameSpash" method="_on_start_game_pressed"]
-[connection signal="area_entered" from="gems" to="InventoryBar" method="_on_gems_red_gem_collected"]

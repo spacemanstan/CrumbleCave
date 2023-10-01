@@ -19,6 +19,10 @@ func _ready():
 	camera = $Camera3D  # Adjust this path according to your node hierarchy
 	animation_tree.active # ensure animation tree is active on scene start 
 
+func _process(_delta):
+	var inven = get_node("../InventoryBar")
+	get_node("../Score").text = "Score: " + str(inven.score)
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -60,6 +64,7 @@ func _physics_process(delta):
 func killPlayer():
 	print("THE PLAYER IS DEAD")	
 	respawnPlayer()
+	
 	PlayerDied.emit()
 
 func respawnPlayer():
@@ -70,5 +75,5 @@ func _on_world_game_start():
 	respawnPlayer()
 
 
-func _on_area_3d_body_entered(body):
-	CollidedWithGem.emit(body)
+func _on_gem_sniffer_area_entered(area):
+	CollidedWithGem.emit(area)
