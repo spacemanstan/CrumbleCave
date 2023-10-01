@@ -4,6 +4,9 @@ var inventory: Array[ItemData]
 var hbox: HBoxContainer
 var focused_index: int = -1  # The index of the focused item in the HBoxContainer
 
+var weight = 0
+var score = 15
+
 func _ready():
 	hbox = $CenterContainer/HBoxContainer
 	populate_inventory()
@@ -85,14 +88,14 @@ func clear_inventory():
 		hbox.remove_child(child)
 		child.queue_free()
 
-func _on_gems_red_gem_collected():
+func _on_gems_red_gem_collected(body):
 	var item = ItemData.new()
-	item.name = "Red Gem"
+	item.name = body.name
 	var placeholder = PlaceholderTexture2D.new()
 	placeholder.set_size(Vector2(75,155))
 	item.texture = placeholder
 	add_item_to_inventory(item)
-	print("PLAYER COLLECTED GEM")
+	print("PLAYER COLLECTED ", body.gemName)
 
 func _on_world_game_over():
 	clear_inventory()
