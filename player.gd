@@ -14,7 +14,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	camera = $Camera3D  # Adjust this path according to your node hierarchy
-	
+
+func _process(_delta):
+	var inven = get_node("../InventoryBar")
+	get_node("../Score").text = "Score: " + str(inven.score)
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -53,6 +57,7 @@ func _physics_process(delta):
 func killPlayer():
 	print("THE PLAYER IS DEAD")	
 	respawnPlayer()
+	
 	PlayerDied.emit()
 
 func respawnPlayer():

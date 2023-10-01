@@ -3,6 +3,9 @@ extends Control
 var inventory: Array[ItemData]
 var hbox: HBoxContainer
 
+var weight = 0
+var score = 15
+
 func _ready():
 	hbox = $CenterContainer/HBoxContainer
 	populate_inventory()
