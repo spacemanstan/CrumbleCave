@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkgt3l35cvv2t"]
+[gd_scene load_steps=5 format=3 uid="uid://bkgt3l35cvv2t"]
 
 [ext_resource type="PackedScene" uid="uid://ym1v0x82r3ie" path="res://Assets/GEMS/gems_abcd.glb" id="1_v6s3c"]
 [ext_resource type="Script" path="res://Assets/GEMS/gems.gd" id="2_54avs"]
 [ext_resource type="Material" uid="uid://dj2gmbfkpxvyg" path="res://Assets/GEMS/gem.material" id="2_kuqgw"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eefyx"]
+height = 0.710254
 
 [node name="gems" instance=ExtResource("1_v6s3c")]
 script = ExtResource("2_54avs")
@@ -27,3 +30,11 @@ material_override = ExtResource("2_kuqgw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 visible = false
 material_override = ExtResource("2_kuqgw")
+
+[node name="Area3D" type="Area3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00438437, 0.597664, 0.0143776)
+shape = SubResource("CylinderShape3D_eefyx")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
