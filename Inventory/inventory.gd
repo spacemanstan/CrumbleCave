@@ -71,14 +71,14 @@ func focus_item_at_index(index: int):
 		highlight.visible = (i == index)  # Show highlight only if it's the focused item
 
 func remove_item_from_inventory():
-	if focused_index == -1:  # Nothing to discard
+	if focused_index == -1:   # Nothing to discard
 		return
 	# Remove from display
 	var item_display = hbox.get_child(focused_index)
 	hbox.remove_child(item_display)
 	item_display.queue_free()
 	# Remove from inventory array
-	inventory.erase(focused_index)
+	inventory.remove_at(focused_index)
 	# Adjust focus
 	if focused_index >= hbox.get_child_count():  # If the last item was discarded, adjust focus
 		focused_index = hbox.get_child_count() - 1
