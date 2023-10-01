@@ -3,15 +3,15 @@ extends Control
 var inventory: Array[ItemData]
 var hbox: HBoxContainer
 var focused_index: int = -1  # The index of the focused item in the HBoxContainer
-
-var weight = 0
-var score = 15
+var total_weight = 0
+var score = 0
 
 func _ready():
 	hbox = $CenterContainer/HBoxContainer
 	populate_inventory()
 
 func _process(delta):
+	#TODO add inventory max quantity
 	if Input.is_action_just_pressed("ui_scroll_left"):
 		if focused_index > 0:  # if not the first item
 			focused_index -= 1
@@ -22,7 +22,19 @@ func _process(delta):
 		focus_item_at_index(focused_index)
 	elif Input.is_action_just_pressed("discard"):
 		remove_item_from_inventory()
+	calculate_weight_and_score()
+	
+# calculate the current total weight and score for the player
+func calculate_weight_and_score():
+	total_weight = 0
+	score = 0
+	for item_data in inventory:
+		total_weight += item_data.weight
+		score += item_data.weight * item_data.weight
+	print("Total Weight:", total_weight)
+	print("Score:", score)
 
+# populate the inventory
 func populate_inventory():
 	clear_inventory()
 	for item_data in inventory:
@@ -90,10 +102,21 @@ func clear_inventory():
 
 func _on_gems_red_gem_collected(body):
 	var item = ItemData.new()
-	item.name = body.name
+	item.name = body.gemName
+	item.weight = body.weight
 	var placeholder = PlaceholderTexture2D.new()
 	placeholder.set_size(Vector2(75,155))
-	item.texture = placeholder
+	# Handle the different textures and add them to the ItemData
+	# TODO: replace placeholder with proper textures for each Gem type
+	match item.name:
+		"Gem A":
+			item.texture = placeholder
+		"Gem B":
+			item.texture = placeholder
+		"Gem C":
+			item.texture = placeholder
+		"Gem D":
+			item.texture = placeholder
 	add_item_to_inventory(item)
 	print("PLAYER COLLECTED ", body.gemName)
 
