@@ -50,12 +50,12 @@ func add_item_to_inventory(item_data: ItemData):
 	var item_display = TextureRect.new()
 	var item_highlight = ColorRect.new()
 	item_highlight.set_size(Vector2(80,160))
-	item_highlight.color = Color(1,1,0,1)
+	item_highlight.color = Color(1,0,1,1)
 	item_highlight.visible = false  # Start with highlight hidden
 	item_display.texture = item_data.texture
 	item_display.add_child(item_highlight)
 	item_highlight.z_index = -1
-	item_highlight.position = Vector2(-2.5, -2.5)
+	item_highlight.position = Vector2(-2, -2)
 	hbox.add_child(item_display)
 	
 	# If it's the only item in the inventory after adding, focus on it
@@ -114,13 +114,13 @@ func _on_gems_red_gem_collected(body):
 	# TODO: replace placeholder with proper textures for each Gem type
 	match item.name:
 		"Gem A":
-			item.texture = placeholder
+			item.texture = preload("res://Assets/Cards/card_a_2.png")
 		"Gem B":
-			item.texture = placeholder
+			item.texture = preload("res://Assets/Cards/card_b_4.png")
 		"Gem C":
-			item.texture = placeholder
+			item.texture = preload("res://Assets/Cards/card_c_6.png")
 		"Gem D":
-			item.texture = placeholder
+			item.texture = preload("res://Assets/Cards/card_d_8.png")
 	add_item_to_inventory(item)
 	print("PLAYER COLLECTED ", body.gemName)
 	calculate_weight_and_score()
