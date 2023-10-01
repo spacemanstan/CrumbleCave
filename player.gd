@@ -3,17 +3,21 @@ extends CharacterBody3D
 signal PlayerDied
 signal CollidedWithGem(body : Node)
 
+@onready var animation_tree : AnimationTree = $AnimationTree
+
 @export var Lava : Node3D
 
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
 @export var ROTATION_SPEED = 2  # Adjust this value to control the rotation speed
+const LERP_VAL = 0.15
 
 var camera: Camera3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	camera = $Camera3D  # Adjust this path according to your node hierarchy
+	animation_tree.active # ensure animation tree is active on scene start 
 
 func _process(_delta):
 	var inven = get_node("../InventoryBar")
@@ -28,18 +32,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction.
-	var input_dir = Vector3(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), 
-							0,
-							Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")).normalized()  # Normalize the input vector
-
-	# Make movement direction relative to the camera's global orientation
-	input_dir = camera.global_transform.basis * input_dir
-
-	# Apply the speed factor to horizontal components
-	velocity.x = input_dir.x * SPEED
-	velocity.z = input_dir.z * SPEED
-
+	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = -(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	
+	if direction:
+		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+	else:
+		velocity.x = lerp(velocity.x, direction.x * 0.0, LERP_VAL)
+		velocity.z = lerp(velocity.z, direction.z * 0.0, LERP_VAL)
+		
 	# Handle rotation
 	var rotation_amount = 0.0
 	if Input.is_action_pressed("ui_rotate_right"):
@@ -49,6 +52,10 @@ func _physics_process(delta):
 
 	if rotation_amount != 0:
 		rotate_y(rotation_amount * delta)
+
+	var shit = Vector2(velocity.length() / SPEED, velocity.y / JUMP_VELOCITY)
+	animation_tree.set("parameters/BlendSpace2D/blend_position", shit)
+
 	move_and_slide()
 	
 	if(position.y <= Lava.position.y):
