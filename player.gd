@@ -14,6 +14,8 @@ const LERP_VAL = 0.15
 
 var camera: Camera3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var dead = false
+
 
 func _ready():
 	camera = $Camera3D  # Adjust this path according to your node hierarchy
@@ -24,12 +26,14 @@ func _process(_delta):
 	get_node("../Score").text = "Score: " + str(inven.score)
 
 func _physics_process(delta):
+	var isJumping = false
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	# Handle Jump using custom "jump" action.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		isJumping = true
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -55,7 +59,9 @@ func _physics_process(delta):
 
 	var shit = Vector2(velocity.length() / SPEED, velocity.y / JUMP_VELOCITY)
 	animation_tree.set("parameters/BlendSpace2D/blend_position", shit)
-
+	
+	animation_tree["parameters/conditions/jump"] = isJumping
+#	parameters/conditions/dead
 	move_and_slide()
 	
 	if(position.y <= Lava.position.y):
@@ -63,13 +69,18 @@ func _physics_process(delta):
 
 func killPlayer():
 	print("THE PLAYER IS DEAD")	
-	respawnPlayer()
-	
-	PlayerDied.emit()
+	if(!dead):
+		dead = true
+		animation_tree["parameters/conditions/Alive"] = !dead
+		animation_tree["parameters/conditions/dead"] = dead
+		PlayerDied.emit()
 
 func respawnPlayer():
 	# return the player to the starting spot
 	position = Vector3(0,5,0)
+	dead = false
+	animation_tree["parameters/conditions/Alive"] = !dead
+	animation_tree["parameters/conditions/dead"] = dead
 	
 func _on_world_game_start():
 	respawnPlayer()

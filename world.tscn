@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
-[ext_resource type="PackedScene" uid="uid://bycy02mh3ki2n" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
+[ext_resource type="PackedScene" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
 [ext_resource type="PackedScene" uid="uid://btcv1ide7hov8" path="res://Inventory/inventory.tscn" id="5_kqvlx"]
 [ext_resource type="Script" path="res://Assets/LavaTiles/Lava.gd" id="6_3174l"]
 [ext_resource type="PackedScene" uid="uid://bkgt3l35cvv2t" path="res://Assets/GEMS/gems.tscn" id="9_c0vol"]
@@ -44,7 +44,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 5, 0)
 Lava = NodePath("../Lava")
 
 [node name="Camera3D" type="Camera3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 6.703, 6)
+transform = Transform3D(-1, 3.69465e-08, -7.92319e-08, 0, 0.906308, 0.422618, 8.74228e-08, 0.422618, -0.906308, 0, 7, -6)
 fov = 82.2821
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
