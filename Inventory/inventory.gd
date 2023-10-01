@@ -34,7 +34,7 @@ func _on_gems_red_gem_collected(body):
 	placeholder.set_size(Vector2(65,150))
 	item.texture = placeholder
 	add_item_to_inventory(item)
-	print("PLAYER COLLECTED ", body.name)
+	print("PLAYER COLLECTED ", body.gemName)
 
 func _on_world_game_over():
 	clear_inventory()

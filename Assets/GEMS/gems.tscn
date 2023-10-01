@@ -141,7 +141,6 @@ height = 1.0
 collision_layer = 134217728
 collision_mask = 134217728
 script = ExtResource("2_54avs")
-metadata/Name = "Gem"
 metadata/description = "A Shiny Gem"
 
 [node name="gem_a" type="MeshInstance3D" parent="."]
@@ -173,3 +172,7 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_eefyx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+omni_range = 3.0
