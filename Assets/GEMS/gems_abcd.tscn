@@ -1,6 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bh1gvpolb4c6n"]
 
-[ext_resource type="Material" uid="uid://dj2gmbfkpxvyg" path="res://Assets/GEMS/gem.material" id="1_r1p8t"]
+[ext_resource type="Material" uid="uid://dj2gmbfkpxvyg" path="res://Assets/GEMS/gem_a.material" id="1_r1p8t"]
+
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mjnt8"]
 _surfaces = [{

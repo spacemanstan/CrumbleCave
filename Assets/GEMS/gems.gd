@@ -6,6 +6,9 @@ func _ready():
 	#default to gem a on spawn
 	chooseGem("a")
 
+func _process(delta):
+	rotate_y(0.5 * delta)
+
 func chooseGem(choice):
 	$gem_a.hide()
 	$gem_b.hide()

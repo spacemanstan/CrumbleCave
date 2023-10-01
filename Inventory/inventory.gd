@@ -27,14 +27,14 @@ func clear_inventory():
 		child.queue_free()
 	
 # on reciept of red_gem_collected create an ItemData and push into inventory array
-func _on_gems_red_gem_collected():
+func _on_gems_red_gem_collected(body):
 	var item = ItemData.new()
-	item.name = "Red Gem"
+	item.name = body.name
 	var placeholder = PlaceholderTexture2D.new()
 	placeholder.set_size(Vector2(65,150))
 	item.texture = placeholder
 	add_item_to_inventory(item)
-	print("PLAYER COLLECTED GEM")
+	print("PLAYER COLLECTED ", body.name)
 
 func _on_world_game_over():
 	clear_inventory()

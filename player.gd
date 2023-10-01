@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal PlayerDied
+signal CollidedWithGem(body : Node)
 
 @export var Lava : Node3D
 
@@ -60,3 +61,7 @@ func respawnPlayer():
 	
 func _on_world_game_start():
 	respawnPlayer()
+
+
+func _on_area_3d_body_entered(body):
+	CollidedWithGem.emit(body)
