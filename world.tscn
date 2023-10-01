@@ -1,13 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbwowjrmyg668"]
+[gd_scene load_steps=10 format=3 uid="uid://dbwowjrmyg668"]
 
 [ext_resource type="PackedScene" uid="uid://hx8hbbrw2jmq" path="res://ground.tscn" id="1_c83ny"]
 [ext_resource type="Script" path="res://world.gd" id="1_ccbp5"]
 [ext_resource type="PackedScene" uid="uid://quh0pnhlex2d" path="res://player.tscn" id="2_8g7m2"]
 [ext_resource type="PackedScene" uid="uid://bycy02mh3ki2n" path="res://Assets/Stones/stone_f.tscn" id="4_2tblx"]
-[ext_resource type="Script" path="res://Lava.gd" id="4_24ce5"]
 [ext_resource type="PackedScene" uid="uid://btcv1ide7hov8" path="res://Inventory/inventory.tscn" id="5_kqvlx"]
 [ext_resource type="MeshLibrary" uid="uid://d0hmgjrrpyjeh" path="res://Assets/LavaTiles/lava_tiles.tres" id="5_nroe0"]
-[ext_resource type="Script" path="res://GameSplash.gd" id="6_xghbb"]
+[ext_resource type="Script" path="res://Assets/LavaTiles/Lava.gd" id="6_3174l"]
+[ext_resource type="PackedScene" uid="uid://bkgt3l35cvv2t" path="res://Assets/GEMS/gems.tscn" id="9_c0vol"]
+
+[sub_resource type="GDScript" id="GDScript_ddrxh"]
+script/source = "extends Control
+
+func _on_start_game_pressed():
+	hide()
+
+
+func _on_world_game_over():
+	show()
+"
 
 [node name="world" type="Node"]
 script = ExtResource("1_ccbp5")
@@ -28,10 +39,11 @@ omni_range = 22.6851
 
 [node name="Ground" parent="." instance=ExtResource("1_c83ny")]
 stone_F = ExtResource("4_2tblx")
+MapSeedIsRandom = false
 Frequency = 0.1
 
 [node name="Lava" type="Node3D" parent="."]
-script = ExtResource("4_24ce5")
+script = ExtResource("6_3174l")
 
 [node name="GridMap" type="GridMap" parent="Lava"]
 mesh_library = ExtResource("5_nroe0")
@@ -61,7 +73,7 @@ offset_right = 100.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_xghbb")
+script = SubResource("GDScript_ddrxh")
 
 [node name="Grayout" type="ColorRect" parent="GameSpash"]
 layout_mode = 0
@@ -97,6 +109,9 @@ offset_right = 53.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "START GAEM"
+
+[node name="gems" parent="." instance=ExtResource("9_c0vol")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57214, -2.87137)
 
 [connection signal="Game_Over" from="." to="." method="_on_game_over"]
 [connection signal="Game_Over" from="." to="Lava" method="_on_world_game_over"]
